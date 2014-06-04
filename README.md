@@ -1,7 +1,7 @@
 mono-aspnetvnext Vagrant box
 ============================
 
-*This repository hosts the Vagrantfile used to create the box at [https://vagrantcloud.com/akoeplinger/mono-aspnetvnext](https://vagrantcloud.com/akoeplinger/mono-aspnetvnext)*
+*This repository hosts the Vagrantfile used to create the box at [https://vagrantcloud.com/akoeplinger/mono-aspnetvnext](https://vagrantcloud.com/akoeplinger/mono-aspnetvnext). Do __not__ clone this repository, just follow the [instructions](#setup-vagrant-box) below*
 
 The box contains everything needed to play with ASP.NET vNext projects on Mono.
 

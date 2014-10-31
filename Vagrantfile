@@ -13,29 +13,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 8080 on the guest machine.
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  # accessing "localhost:5000" will access port 5000 on the guest machine.
+  config.vm.network "forwarded_port", guest: 5000, host: 5000
 
 $script = <<SCRIPT
 
-sudo apt-get -y install curl unzip git-core build-essential autoconf libtool gettext libgdiplus libgtk2.0-0 xsltproc
+sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
+sudo apt-get update
+sudo apt-get -y install curl unzip git-core mono-devel
+sudo mozroots --machine --import --sync --quiet
 
-cd /tmp
-git clone --depth=1 https://github.com/mono/mono
-cd mono
-./autogen.sh --prefix=/usr --with-mcs-docs=no
-make get-monolite-latest
-make
-sudo make install
-sudo rm -r /tmp/mono
-
-mozroots --import --sync
-curl https://raw.githubusercontent.com/graemechristie/Home/KvmShellImplementation/kvmsetup.sh | sh && source ~/.kre/kvm/kvm.sh && kvm upgrade
+curl https://raw.githubusercontent.com/aspnet/Home/master/kvminstall.sh | sh && source ~/.kre/kvm/kvm.sh && kvm upgrade
 
 git clone https://github.com/davidfowl/HelloWorldVNext ~/helloworld
-
+sed -i s/aspnetvnext/aspnetmaster/g ~/helloworld/NuGet.Config
 cd ~/helloworld
-kpm restore
 
 SCRIPT
 

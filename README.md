@@ -15,11 +15,11 @@ By using Vagrant, you can run a VM with everything set up correctly without mess
 # Setup Vagrant box
 To use the box and run the included "Hello World" sample, follow these steps:
 
-1. Run `vagrant init akoeplinger/mono-aspnetvnext` in an empty directory, this creates a new Vagrantfile
-2. Add `config.vm.network "forwarded_port", guest: 5000, host: 5000` to the newly created Vagrantfile to forward your local port 5000 to the VM
-3. Run `vagrant up` to download the Vagrant box and boot the VM
-4. Run `vagrant ssh` to connect to the VM
-5. `cd helloworld/src/helloworldweb`
+1. Run `vagrant up` to download the Vagrant box and boot the VM
+2. Run `vagrant ssh` to connect to the VM
+3. `cd helloworld/`
+4. Run `kvm upgrade` to install mono lasted version
+5. `cd src/helloworldweb`
 6. Run `kpm restore` to restore the necessary packages
 7. Start the test web server by running `k web`
 
